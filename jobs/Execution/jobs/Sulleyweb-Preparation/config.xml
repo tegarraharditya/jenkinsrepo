@@ -13,7 +13,7 @@
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
     <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.25.0">
-      <projectUrl>https://github.com/tegarraharditya/SulleyWeb/</projectUrl>
+      <projectUrl>https://github.com/olxindonesia/sulleyweb.git/</projectUrl>
       <displayName></displayName>
     </com.coravy.hudson.plugins.github.GithubProjectProperty>
   </properties>
