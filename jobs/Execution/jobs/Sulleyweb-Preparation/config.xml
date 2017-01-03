@@ -21,7 +21,7 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>https://github.com/tegarraharditya/SulleyWeb</url>
+        <url>https://github.com/olxindonesia/sulleyweb.git</url>
         <credentialsId>3ac1c37d-392f-42b1-b8e9-21e85fd909a1</credentialsId>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
