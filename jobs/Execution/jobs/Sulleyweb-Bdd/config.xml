@@ -35,15 +35,57 @@
       <filter>sulleyweb.tar.gz</filter>
       <target></target>
       <excludes></excludes>
-      <selector class="hudson.plugins.copyartifact.SpecificBuildSelector">
-        <buildNumber>$ARTIFACT_BUILD_NUMBER</buildNumber>
-      </selector>
+      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
       <command>tar -xzf sulleyweb.tar.gz
 tar -xzf athena.tar.gz
 </command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>cd $WORKSPACE/sulleyweb/tests/functionaltest
+cat &gt; behat-mobile.ci.yml &lt;&lt;EOF
+default:
+    extensions:
+        Tonic\Behat\ParallelScenarioExtension: ~
+        Athena\Behat\BootstrapFileLoader:
+            bootstrap_path: &quot;/opt/athena/bootstrap.php&quot;
+        Athena\Event\Proxy\BehatProxyExtension: ~
+
+    suites:
+        default:
+            filters:
+              #tags: &apos;m-paywall&amp;&amp;~skip&apos;
+
+              tags: &apos;m-addetails-buyer,m-addetails-seller,m-boardingScreen,m-category,m-editAd,m-favorite,m-filter,m-forgotPassword,m-hamburgerMenu,m-listings,m-login,m-myadactive,m-myadmoderation,m-myadnonactive,m-myprofile,m-postAds,m-toplisting,m-search,m-paywall&amp;&amp;~skip&apos;
+              
+              #tags: &apos;m-addetails-buyer,m-addetails-seller,m-boardingScreen,m-category,m-chat,m-editAd,m-favorite,m-filter,m-forgotPassword,m-hamburgerMenu,m-listings,m-login,m-myadactive,m-myadmoderation,m-myadnonactive,m-myprofile,m-olxwallet,m-postAds,m-toplisting,m-search&amp;&amp;~skip&apos;
+            paths:
+                - %paths.base%/mobile/feature
+            contexts:
+                - Tests\mobile\context\MobileBoardingScreenContext
+                - Tests\mobile\context\MobileCategoryContext
+                - Tests\mobile\context\MobileForgotPasswordContext
+                - Tests\mobile\context\MobileHamburgerMenuContext
+                - Tests\mobile\context\MobileLoginContext
+                - Tests\mobile\context\MobileLogoutContext
+                - Tests\mobile\context\MobileListingsContext
+                - Tests\mobile\context\MobileMyProfileContext
+                - Tests\mobile\context\MobileAdDetailsAsBuyerContext
+                - Tests\mobile\context\MobileAdDetailsAsSellerContext
+                - Tests\mobile\context\MobileSearchContext
+                - Tests\mobile\context\MobilePostAdsContext
+                - Tests\mobile\context\MobileChatContext
+                - Tests\mobile\context\MobileMyAdActiveContext
+                - Tests\mobile\context\MobileMyAdModerationContext
+                - Tests\mobile\context\MobileMyNonactiveAdContext
+                - Tests\mobile\context\MobileOLXWalletContext
+                - Tests\mobile\context\MobileFavoriteAdsContext
+                - Tests\mobile\context\MobilePurchaseTopListingContext
+                - Tests\mobile\context\MobileEditAdContext
+                - Tests\mobile\context\MobilePaywallContext
+EOF</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>#Load all env variable
