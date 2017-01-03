@@ -58,8 +58,7 @@ $WORKSPACE/athena/athena proxy start
 $WORKSPACE/athena/athena selenium start hub latest -p 4444 
 $WORKSPACE/athena/athena selenium start chrome-debug latest -p 9999:5900 -v /dev/shm:/dev/shm --link-proxy=athena-plugin-proxy-0
 $WORKSPACE/athena/athena info
-$WORKSPACE/athena/athena php bdd . athena.bdd.ci.json --browser=chrome --config=behat-desktop.yml
-</command>
+$WORKSPACE/athena/athena php bdd . athena.bdd.m.ci.json --browser=chrome --config=behat-mobile.ci.yml</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
