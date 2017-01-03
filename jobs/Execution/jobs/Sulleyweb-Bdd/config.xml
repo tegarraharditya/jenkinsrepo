@@ -66,7 +66,7 @@ $WORKSPACE/athena/athena php bdd . athena.bdd.m.ci.json --browser=chrome --confi
       <reportTargets>
         <htmlpublisher.HtmlPublisherTarget>
           <reportName>Mobile PWA</reportName>
-          <reportDir>/sulleyweb/tests/functionaltest/Report/mobile/</reportDir>
+          <reportDir>$WORKSPACE/sulleyweb/tests/functionaltest/Report/mobile/</reportDir>
           <reportFiles>index.html</reportFiles>
           <alwaysLinkToLastBuild>false</alwaysLinkToLastBuild>
           <keepAll>false</keepAll>
